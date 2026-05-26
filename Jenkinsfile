@@ -1,5 +1,4 @@
-pipeline 
-{
+pipeline {
     agent any
 
     stages 
@@ -11,7 +10,7 @@ pipeline
                 echo 'Build App'
             }
         }
-
+        
         stage('Test') 
         {
             steps 
@@ -19,7 +18,7 @@ pipeline
                 echo 'Test App'
             }
         }
-
+        
         stage('Deploy') 
         {
             steps 
@@ -28,14 +27,12 @@ pipeline
             }
         }
     }
-
-    post
+    
+    post 
     {
-
-    	always
-    	{
-    		emailext body: 'Summary', subject: 'Pipeline Status', to: 'selenium3bymukesh@gmail.com'
-    	}
-
+        always
+        {
+            emailext body: 'Summary', subject: 'Pipeline Status', to: 'test@mailhog.local'
+        }
     }
 }
